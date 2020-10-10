@@ -142,7 +142,14 @@ class IdeationSetting extends React.Component {
           </Bounce>
           <Divider></Divider>
         </BackGroundBlock>
-        <BackGroundBlock></BackGroundBlock>
+        <BackGroundBlock>
+          <form>
+            <label>
+              <input type="text" name="topic" />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+        </BackGroundBlock>
         <TopBlock></TopBlock>
       </>
     );

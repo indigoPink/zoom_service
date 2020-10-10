@@ -168,100 +168,108 @@ axios
 let beClicked = false;
 let selected_name = "false";
 
-const ProcessSelect = ({ match }) => {
-  // moveHref = (data) => {
-  //   beClicked = true;
-  //   selected_name = "true";
+class RoomSetting extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bool: [
+        false,
+        false,
+        false,
+        false,
+        false,
+      ],
+      colleges: [
+        "1h",
+        "2h",
+        "3h",
+        "4h",
+        "5h",
+      ],
+    };
+    this.changeColor.bind(this);
+    // 클래스 형 함수는 위에 추가해줘야함!
+  }
 
-  //   console.log(data);
+  changeColor(i) {
+    console.log(i);
+    this.setState({
+      bool: this.state.bool.map((item, index) => (index !== i ? item : !item)),
+    });
+  }
+  render() {
+    const { colleges } = this.state;
+    const collegeList = colleges.map((collage, i) => (
+      <button
+        className={`roundButton yHover ${this.state.bool[i] ? "skyblue" : ""}`}
+        key={collage}
+        onClick={(e) => this.changeColor(i)}
+        style={{ height: 35, flex: 1 }}
+      >
+        <div style={TagTextStyle}>{collage}</div>
+      </button>
+    ));
 
-  //   this.props.history.push({
-  //     pathname: "/" + data,
-  //   });
-  // };
+    // 왜 버튼이 잘 안눌리나 했더니 누르는 함수가 글자 영역만 해당 되어서 그러는겨
+    // 그래서 div에서 버튼으로 onCLick 옮겼음
 
-  // render() {
-  // const { moveHref } = this;
-  return (
-    <>
-      <TopBlock></TopBlock>
-      <BackGroundBlock>
-        <Bounce>
-          <TitleBlock>
-            <span>Nice To Meet you, Julie</span>
-          </TitleBlock>
-        </Bounce>
-      </BackGroundBlock>
-      <BackGroundBlock>
-        <Bounce>
-          <TitleBlock>
-            <span>Which type of collaboration will you do, today?</span>
-          </TitleBlock>
-        </Bounce>
-        <Divider></Divider>
-      </BackGroundBlock>
-      <BackGroundBlock>
-        <Bounce>
-          <ButtonLine>
-            <ButtonBlock>
-              <Link to={`${match.url}/ideation`}>
-                <TextBox>Ideation</TextBox>
-                <TextBox> </TextBox>
-              </Link>
-            </ButtonBlock>
-            <ButtonBlock>
-              <href to="/yesno">
-                <TextBox>Design</TextBox>
-                <TextBox>Thinking</TextBox>
-              </href>
-            </ButtonBlock>
-            <ButtonBlock>
-              <href to="/rouletteList">
-                <TextBox>Agile</TextBox>
-                <TextBox> </TextBox>
-              </href>
-            </ButtonBlock>
-          </ButtonLine>
-        </Bounce>
-      </BackGroundBlock>
-      <BackGroundBlock>
-        <Bounce>
-          <ButtonLine>
-            <ButtonBlock>
-              <href to="/filter">
-                <TextBox>Lunch</TextBox>
-                <TextBox>Menu</TextBox>
-              </href>
-            </ButtonBlock>
-            <ButtonBlock>
-              <href to="/yesno">
-                <TextBox>Brainstorming</TextBox>
-                <TextBox> </TextBox>
-              </href>
-            </ButtonBlock>
-            <ButtonBlock>
-              <href to="/rouletteList">
-                <TextBox>Google</TextBox>
-                <TextBox>Sprint</TextBox>
-              </href>
-            </ButtonBlock>
-          </ButtonLine>
-        </Bounce>
-      </BackGroundBlock>
-      <TopBlock></TopBlock>
-    </>
-  );
-  // }
-};
+    var container = {
+      flex: 1,
+      backgroundColor: "#fff",
+      alignItems: "center",
+      justifyContent: "center",
+    };
 
-// <TitleBlock>
-//           <span>enter your zoom code!</span>
-//         </TitleBlock>
-// <InputBlock>
-//   <input
-//     placeholder="테마를 입력하세요"
-//     onClick={() => moveHref("dadada")}
-//   ></input>
-//   <button onClick={() => moveHref("dadada")}>Start!</button>
-// </InputBlock>;
-export default ProcessSelect;
+    var TagTextStyle = {
+      fontSize: 30,
+      flex: 1,
+    };
+
+    return (
+      <>
+        <TopBlock></TopBlock>
+        <BackGroundBlock>
+          <Bounce>
+            <TitleBlock>
+              <span>Time Setting / Management</span>
+            </TitleBlock>
+          </Bounce>
+        </BackGroundBlock>
+        <BackGroundBlock>
+          <div style={TagTextStyle}>{collegeList}</div>
+        </BackGroundBlock>
+        <BackGroundBlock>
+          <Bounce>
+            <TitleBlock>
+              <span>Self introduction</span>
+            </TitleBlock>
+          </Bounce>
+          <Divider></Divider>
+        </BackGroundBlock>
+        <BackGroundBlock>
+          <Bounce>
+            <TitleBlock>
+              <span>Ice breaking</span>
+            </TitleBlock>
+          </Bounce>
+        </BackGroundBlock>
+        <BackGroundBlock>
+          <Bounce>
+            <TitleBlock>
+              <span>Idea Pitching</span>
+            </TitleBlock>
+          </Bounce>
+        </BackGroundBlock>
+        <BackGroundBlock>
+          <Bounce>
+            <TitleBlock>
+              <span>Break Time</span>
+            </TitleBlock>
+          </Bounce>
+        </BackGroundBlock>
+        <TopBlock></TopBlock>
+      </>
+    );
+  }
+}
+export default RoomSetting;
