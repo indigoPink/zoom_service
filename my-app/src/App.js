@@ -6,6 +6,7 @@ import RoomSetting from "./pages/roomSetting";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import queryString from "query-string";
 
+
 const App = ({ location, match }) => {
   // return <NewsList />;
   // return <Welcome />;
